@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<style type="text/css">
+	html,body{
+		width: 100%;
+		height: 100%;
+		margin: 0px;
+		text-align: center;
+	}
+
+    body.morning{
+        background: linear-gradient(45deg, #ff5f6d , #ffc371);
+        color: #fff;
+        text-shadow: 0px 0px 50px #111;
+    }
+
+    body.afternoon{
+        background: linear-gradient(45deg, #A6D1F3 , #EFEFEF);
+        color: #212121;
+        text-shadow: 0px 0px 50px #111;
+    }
+
+    body.evening{
+        background: linear-gradient(45deg, #493158 , #B1BCD9, #3C67C5);
+        color: #fff;
+        text-shadow: 0px 0px 50px #111;
+    }
+
+    body.evening-late{
+        background: linear-gradient(45deg, #F388A5 , #260D2F);
+        color: #fff;
+        text-shadow: 0px 0px 50px #111;
+    }
+
+    .greeting-ani{
+        width: 200px;
+        display: none;
+        margin: auto;
+    }
+
+    body.morning .greeting-ani.morning{
+        display: block;
+    }
+
+    body.afternoon .greeting-ani.afternoon{
+        display: block;
+    }
+
+    body.evening .greeting-ani.evening{
+        display: block;
+    }
+
+    body.evening-late .greeting-ani.night{
+        display: block;
+    }
+</style>
+<body>
+
+<div style="display: table; width: 100%;height: 100%;">
+    <div style="display: table-cell;vertical-align: middle;">
+    <img class="greeting-ani morning" src="morning.gif">
+    <img class="greeting-ani afternoon" src="afternoon.gif">
+    <img class="greeting-ani evening" src="evening.gif">
+    <img class="greeting-ani night" src="night.gif">
+        
+	<h1 class="greeting" ></h1>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ" crossorigin="anonymous"></script>
+<script type="text/javascript">
+	// Home page greeting
+    var thehours = new Date().getHours();
+    var themessage;
+    var morning = ('Good Morning');
+    var afternoon = ('Good Afternoon');
+    var evening = ('Good Evening');
+
+    if (thehours >= 0 && thehours < 12) {
+        themessage = morning; 
+        $("body").addClass("morning")
+
+    } else if (thehours >= 12 && thehours < 16) {
+        themessage = afternoon;
+        $("body").addClass("afternoon")
+
+    } else if (thehours >= 16 && thehours < 19) {
+        themessage = evening;
+        $("body").addClass("evening")
+    } else if (thehours >= 19 && thehours < 24) {
+        themessage = evening;
+        $("body").addClass("evening-late")
+    }
+    $('.greeting').append(themessage);
+
+
+    // home page nav class
+    if ($(".landing-body").hasClass("login-page-container")) {
+        $(".main-nav").addClass("login-page-nav-container");
+    } else{
+        $(".main-nav").removeClass("login-page-nav-container");
+
+    }
+</script>
+</body>
+</html>
